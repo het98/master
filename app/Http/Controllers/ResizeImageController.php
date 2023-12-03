@@ -12,7 +12,7 @@ class ResizeImageController extends Controller
      */
     public function index(Request $request)
     {
-        $name = "i m created to test sub branch and master branch test";
+        $start = 5;
         return view('image.display');
      
     
