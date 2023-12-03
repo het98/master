@@ -12,7 +12,6 @@ class ResizeImageController extends Controller
      */
     public function index(Request $request)
     {
-        $start = 5;
         return view('image.display');
      
     
