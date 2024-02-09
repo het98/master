@@ -39,6 +39,39 @@ class ResizeImageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function zillowAPI(Request $request){
+
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://zillow69.p.rapidapi.com/search?location=Houston%2C%20TX",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-RapidAPI-Host: zillow69.p.rapidapi.com",
+                "X-RapidAPI-Key: eb0995cecbmshb5d08ee150e9d10p12fa79jsn0d20b35fe89a"
+            ],
+        ]);
+        
+        $response = curl_exec($curl);
+        $data = json_decode($response,true);
+        dd($data);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            dd($err);
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+    }
     public function create()
     {
         //
